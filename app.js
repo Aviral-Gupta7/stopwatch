@@ -6,7 +6,7 @@ const minutes = document.querySelector(".minutes");
 const seconds = document.querySelector(".seconds");
 const millisec = document.querySelector(".millisec");
 
-let one, two, three, four;
+let one;
 let isPaused = false;
 pause.disabled = true;
 
@@ -54,9 +54,6 @@ pause.addEventListener("click", () => {
 
 reset.addEventListener("click", () => {
   clearInterval(one);
-  clearInterval(two);
-  clearInterval(three);
-  clearInterval(four);
   hour.innerText = "00";
   seconds.innerText = "00";
   minutes.innerText = "00";
