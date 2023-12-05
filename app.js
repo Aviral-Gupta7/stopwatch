@@ -9,8 +9,10 @@ const millisec = document.querySelector(".millisec");
 
 let one, two, three, four;
 let isPaused = false;
+pause.disabled = true;
 
 const start = () => {
+  pause.disabled = false;
   let sec = Number(seconds.innerText);
   let min = Number(minutes.innerText);
   let hou = Number(hour.innerText);
@@ -72,4 +74,5 @@ reset.addEventListener("click", () => {
   minutes.innerText = "00";
   millisec.innerText = "00";
   play.disabled = false;
+  pause.disabled = true;
 });
