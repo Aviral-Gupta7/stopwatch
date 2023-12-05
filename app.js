@@ -19,38 +19,27 @@ const start = () => {
   console.log(sec, min, hou, ms);
   one = setInterval(() => {
     if (!isPaused) {
-      if (ms === 100) {
+      if (ms == 100) {
         ms = 0;
+        sec++;
+        seconds.innerText = sec;
       }
-      ms = ms + 10;
-      millisec.innerText = ms;
-    }
-  }, 100);
-  two = setInterval(() => {
-    if (!isPaused) {
-      if (sec === 60) {
+      if (sec == 60) {
         sec = 0;
+        min++;
+        seconds.innerText = sec;
+        minutes.innerText = min;
       }
-      sec++;
-      seconds.innerText = sec;
-    }
-  }, 1000);
-  three = setInterval(() => {
-    if (!isPaused) {
       if (min == 60) {
         min = 0;
+        hour++;
+        minutes.innerText = min;
+        hour.innerText = hou;
       }
-      min++;
-      minutes.innerText = min;
+      ms = ms + 1;
+      millisec.innerText = ms;
     }
-  }, 60000);
-  four = setInterval(() => {
-    if (!isPaused) {
-      hou++;
-      hour.innerText = hou;
-    }
-  }, 3600000);
-  play.disabled = true;
+  }, 10);
 };
 
 play.addEventListener("click", start);
