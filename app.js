@@ -22,10 +22,10 @@ const start = () => {
       if (ms === 100) {
         ms = 0;
       }
-      ms++;
+      ms = ms + 10;
       millisec.innerText = ms;
     }
-  }, 10);
+  }, 100);
   two = setInterval(() => {
     if (!isPaused) {
       if (sec === 60) {
