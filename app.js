@@ -1,7 +1,6 @@
 const play = document.querySelector(".play");
 const pause = document.querySelector(".pause");
 const reset = document.querySelector(".reset");
-const watch = document.querySelector(".watch");
 const hour = document.querySelector(".hour");
 const minutes = document.querySelector(".minutes");
 const seconds = document.querySelector(".seconds");
