@@ -11,6 +11,7 @@ let isPaused = false;
 pause.disabled = true;
 
 const start = () => {
+  play.disabled = true;
   pause.disabled = false;
   let sec = Number(seconds.innerText);
   let min = Number(minutes.innerText);
