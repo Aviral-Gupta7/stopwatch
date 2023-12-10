@@ -61,4 +61,5 @@ reset.addEventListener("click", () => {
   millisec.innerText = "00";
   play.disabled = false;
   pause.disabled = true;
+  isPaused = false;
 });
