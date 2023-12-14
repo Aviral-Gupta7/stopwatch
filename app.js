@@ -1,65 +1,83 @@
-const play = document.querySelector(".play");
-const pause = document.querySelector(".pause");
-const reset = document.querySelector(".reset");
+const btnPlay = document.querySelector(".play");
+const btnPause = document.querySelector(".pause");
+const btnReset = document.querySelector(".reset");
 const hour = document.querySelector(".hour");
 const minutes = document.querySelector(".minutes");
-const seconds = document.querySelector(".seconds");
+const second = document.querySelector(".seconds");
 const millisec = document.querySelector(".millisec");
 
-let one;
-let isPaused = false;
-pause.disabled = true;
+millisec.innerHTML = "00";
+second.innerHTML = "00";
+minutes.innerHTML = "00";
+hour.innerHTML = "00";
 
-const start = () => {
-  play.disabled = true;
-  pause.disabled = false;
-  let sec = Number(seconds.innerText);
-  let min = Number(minutes.innerText);
-  let hou = Number(hour.innerText);
-  let ms = Number(millisec.innerText);
-  console.log(sec, min, hou, ms);
-  one = setInterval(() => {
-    if (!isPaused) {
-      if (ms == 100) {
-        ms = 0;
-        sec++;
-        seconds.innerText = sec;
-      }
-      if (sec == 60) {
-        sec = 0;
-        min++;
-        seconds.innerText = sec;
-        minutes.innerText = min;
-      }
-      if (min == 60) {
-        min = 0;
-        hour++;
-        minutes.innerText = min;
-        hour.innerText = hou;
-      }
-      ms = ms + 1;
-      millisec.innerText = ms;
-    }
-  }, 10);
+let interval;
+let sec = 0;
+let ms = 0;
+let min = 0;
+let hr = 0;
+
+btnPlay.onclick = () => {
+  clearInterval(interval);
+  interval = setInterval(start, 10);
 };
 
-play.addEventListener("click", start);
+btnPause.onclick = () => {
+  clearInterval(interval);
+};
 
-pause.addEventListener("click", () => {
-  if (isPaused) {
-    isPaused = false;
-  } else {
-    isPaused = true;
+btnReset.onclick = () => {
+  clearInterval(interval);
+  sec = 0;
+  ms = 0;
+  min = 0;
+  hr = 0;
+  sec;
+  millisec.innerHTML = "00";
+  second.innerHTML = "00";
+  minutes.innerHTML = "00";
+  hour.innerHTML = "00";
+};
+
+const start = () => {
+  ms++;
+
+  if (ms < 9) {
+    millisec.innerHTML = "0" + ms;
   }
-});
 
-reset.addEventListener("click", () => {
-  clearInterval(one);
-  hour.innerText = "00";
-  seconds.innerText = "00";
-  minutes.innerText = "00";
-  millisec.innerText = "00";
-  play.disabled = false;
-  pause.disabled = true;
-  isPaused = false;
-});
+  if (ms > 9) {
+    millisec.innerHTML = ms;
+  }
+
+  if (ms > 99) {
+    sec++;
+    second.innerHTML = "0" + sec;
+    ms = 0;
+    millisec.innerHTML = "0" + 0;
+  }
+
+  if (sec > 9) {
+    second.innerHTML = sec;
+  }
+
+  if (sec > 58) {
+    min++;
+    minutes.innerHTML = min;
+    sec = 0;
+    second.innerHTML = sec;
+  }
+  if (min > 9) {
+    minutes.innerHTML = min;
+  }
+
+  if (min > 58) {
+    hr++;
+    hour.innerHTML = "0" + hr;
+    min = 0;
+    minutes.innerHTML = min;
+  }
+  if (hr > 9) {
+    hour.innerHTML = hr;
+  }
+};
